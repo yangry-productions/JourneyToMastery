@@ -1,12 +1,12 @@
 package com.android.yangryProductions.Sessions;
 
 import android.app.Activity;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 /**
@@ -14,90 +14,58 @@ import android.widget.TextView;
  *
  * Activity that shows the stopwatch and times a new practice session
  */
-public class SessionTimer extends Activity {
-    Button butnStart, butnReset;
-    TextView time;
-    long startTime = 0L;
-    long timeInMilliseconds = 0L;
-    long timeSwapBuff = 0L;
-    long updatedTime = 0L;
-    int t = 1;
-    int hours = 0;
-    int secs = 0;
-    int mins = 0;
-    //int milliseconds = 0;
-    Handler handler = new Handler();
+public class SessionTimer extends Activity implements OnClickListener {
+
+    private Chronometer chronometer;
+    private boolean timerPaused = true; //boolean flag to help track if the timer is paused or not
+    private long pausedTime = 0;    //capture paused time to help resume timer correctly
+    private long elapsedTime = 0;   //capture the total elapsed time
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.session_timer);
-        butnStart = (Button)findViewById(R.id.start_button);
-        butnReset = (Button)findViewById(R.id.reset_button);
-        time = (TextView)findViewById(R.id.timer_display);
 
-        butnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(t==1){
-                    //timer start
-                    butnStart.setText(R.string.pause);
-                    startTime = SystemClock.uptimeMillis();
-                    handler.postDelayed(updateTimer,0);
-                    t=0;
-                }else{
-                    //timer pause
-                    butnStart.setText(R.string.start);
-                    time.setTextColor(Color.BLUE);
-                    timeSwapBuff += timeInMilliseconds;
-                    handler.removeCallbacks(updateTimer);
-                    t=1;
-                }
-            }
-        });
-
-        butnReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startTime = 0L;
-                timeInMilliseconds = 0L;
-                timeSwapBuff = 0L;
-                updatedTime = 0L;
-                t=1;
-                secs=0;
-                mins=0;
-                //milliseconds=0;
-                butnStart.setText(R.string.start);
-                handler.removeCallbacks(updateTimer);
-                time.setText(R.string.start_time);
-            }
-        });
+        chronometer = (Chronometer)findViewById(R.id.chronometer);
+        findViewById(R.id.start_button).setOnClickListener(this);
+        findViewById(R.id.reset_button).setOnClickListener(this);
+        findViewById(R.id.saveSession_button).setOnClickListener(this);
     }
 
-    public Runnable updateTimer = new Runnable() {
-        @Override
-        public void run() {
-            timeInMilliseconds = SystemClock.uptimeMillis() - startTime;
-            updatedTime = timeSwapBuff + timeInMilliseconds;
-            secs = (int)(updatedTime/1000);
-            mins = secs/60; //calculate total number of minutes
-            hours = mins/60;    //calculate total number of hours
-            mins = mins %60;    //calculate number of minutes to show (in case more than 60mins)
-            secs = secs %60;    //calcuate number of seconds to show (in case more than 60secs)
-            //milliseconds = (int)(updatedTime % 1000);
-
-            //display maximum two levels of time. i.e. show seconds only, or minutes and seconds, or hours and minutes
-            if(hours>0)
-                time.setText(hours + "h " + String.format("%02d",mins) + "m ");
-            else if(mins>0)
-                time.setText(String.format("%02d",mins) + "m " + String.format("%02d",secs) + "s");
-            else
-                time.setText(secs + "s");
-
-            time.setTextColor(Color.RED);
-            handler.postDelayed(this,50);
+    @Override
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.start_button:
+                if(timerPaused) {   //case if the start button is pressed before timer is initially started or is already paused
+                    chronometer.setBase(SystemClock.elapsedRealtime() - pausedTime);
+                    chronometer.start();
+                    timerPaused = false;
+                }else{  //case if the start button is pressed while the timer is running
+                    chronometer.stop();
+                    pausedTime =  SystemClock.elapsedRealtime() - chronometer.getBase();
+                    elapsedTime += pausedTime;
+                    timerPaused = true;
+                }
+                break;
+            case R.id.reset_button:
+                chronometer.stop();
+                chronometer.setBase(SystemClock.elapsedRealtime());
+                pausedTime=0;
+                timerPaused=true;
+                break;
+            case R.id.saveSession_button:
+                chronometer.stop();
+                pausedTime = SystemClock.elapsedRealtime() - chronometer.getBase();
+                elapsedTime += pausedTime;
+                timerPaused = true;
+                ((TextView)findViewById(R.id.elapsedTime)).setText(String.valueOf(elapsedTime));
+                break;
         }
-    };
-
+        //update the start button text depending on the state of the timer
+        if(timerPaused)
+            ((Button)findViewById(R.id.start_button)).setText(R.string.start);
+        else
+            ((Button)findViewById(R.id.start_button)).setText(R.string.pause);
+    }
 }

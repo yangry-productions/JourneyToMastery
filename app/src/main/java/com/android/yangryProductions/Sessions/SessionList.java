@@ -21,13 +21,14 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
+import android.widget.AdapterView.AdapterContextMenuInfo;
+import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.AdapterView.AdapterContextMenuInfo;
 
 public class SessionList extends ListActivity {
     private static final int ACTIVITY_CREATE=0;
@@ -43,6 +44,14 @@ public class SessionList extends ListActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sessions_list);
+        findViewById(R.id.new_session_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //start timer activity for debugging
+                Intent i = new Intent(getApplicationContext(), SessionTimer.class);
+                startActivity(i);
+            }
+        });
         mDbHelper = new SessionDbAdapter(this);
         mDbHelper.open();
         fillData();
@@ -61,7 +70,7 @@ public class SessionList extends ListActivity {
 
         // Now create a simple cursor adapter and set it to display
         SimpleCursorAdapter sessions =
-            new SimpleCursorAdapter(this, R.layout.sessions_row, sessionCursor, from, to);
+                new SimpleCursorAdapter(this, R.layout.sessions_row, sessionCursor, from, to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
         setListAdapter(sessions);
     }
 
@@ -103,15 +112,15 @@ public class SessionList extends ListActivity {
     }
 
     private void createSession() {
-        //Intent i = new Intent(this, SessionEdit.class);
-        //startActivityForResult(i, ACTIVITY_CREATE);
+        Intent i = new Intent(this, SessionEdit.class);
+        startActivityForResult(i, ACTIVITY_CREATE);
 
 
 
 
-        //start timer activity for debugging
-        Intent i = new Intent(this, SessionTimer.class);
-        startActivity(i);
+//        //start timer activity for debugging
+//        Intent i = new Intent(this, SessionTimer.class);
+//        startActivity(i);
 
 
 

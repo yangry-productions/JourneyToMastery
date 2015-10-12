@@ -1,4 +1,4 @@
-package com.android.yangryProductions.journeyToMastery;
+package com.android.yangryProductions.Services;
 
 import android.app.Service;
 import android.content.Intent;

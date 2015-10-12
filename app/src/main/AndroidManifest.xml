@@ -18,15 +18,10 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/timer_title"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service
-            android:name="com.android.yangryProductions.journeyToMastery.TimerService"
+            android:name="com.android.yangryProductions.Services.TimerService"
             android:enabled="true"
             android:exported="true" >
         </service>

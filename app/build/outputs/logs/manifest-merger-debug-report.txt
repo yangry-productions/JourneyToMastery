@@ -1,14 +1,17 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:2:1-35:12
+ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:2:1-30:12
 	package
 		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:3:5-53
+		INJECTED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml
+	android:versionName
 		INJECTED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml
 		INJECTED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:2:11-69
 application
-ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:5:5-33:19
+ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:5:5-28:19
 	android:icon
 		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:5:18-47
 activity#com.android.yangryProductions.Sessions.SessionList
@@ -32,7 +35,7 @@ ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app
 	android:name
 		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:15:19-84
 activity#com.android.yangryProductions.Sessions.SessionTimer
-ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:16:9-26:20
+ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:16:9-21:20
 	android:screenOrientation
 		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:20:13-49
 	android:label
@@ -41,11 +44,19 @@ ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app
 		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:18:13-74
 	android:name
 		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:17:13-79
-service#com.android.yangryProductions.journeyToMastery.TimerService
-ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:28:9-32:19
+service#com.android.yangryProductions.Services.TimerService
+ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:23:9-27:19
 	android:enabled
-		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:30:13-35
+		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:25:13-35
 	android:exported
-		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:31:13-36
+		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:26:13-36
 	android:name
-		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:29:13-87
+		ADDED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml:24:13-79
+uses-sdk
+INJECTED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+	android:targetSdkVersion
+		INJECTED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml
+		INJECTED from D:\Android_Development\Android_Studio_Projects\Journey to Mastery\app\src\main\AndroidManifest.xml

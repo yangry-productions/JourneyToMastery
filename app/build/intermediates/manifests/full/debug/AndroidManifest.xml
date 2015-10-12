@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.yangryProductions.journeyToMastery" >
+    package="com.android.yangryProductions.journeyToMastery"
+    android:versionName="0.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="21" />
 
     <application android:icon="@drawable/icon" >
         <activity
@@ -18,15 +23,10 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/timer_title"
             android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service
-            android:name="com.android.yangryProductions.journeyToMastery.TimerService"
+            android:name="com.android.yangryProductions.Services.TimerService"
             android:enabled="true"
             android:exported="true" >
         </service>

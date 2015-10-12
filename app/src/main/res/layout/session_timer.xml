@@ -9,6 +9,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/start" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,22 +18,38 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
-    <TextView
-        android:id="@+id/timer_display"
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:format="%s"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/start_button"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="27dp"
-        android:text="@string/start_time"
-        android:textColor="#1c1c1c"
         android:textSize="40sp" />
     <Button
         android:id="@+id/reset_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/reset"
         android:layout_below="@+id/start_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:text="@string/reset" />
+        android:layout_marginTop="45dp" />
+    <Button
+        android:id="@+id/saveSession_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/saveSession"
+        android:layout_below="@+id/reset_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp" />
+    <TextView
+        android:id="@+id/elapsedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:text="@string/timer_elapsedTime"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
